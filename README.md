@@ -55,6 +55,4 @@ docs/SDD_SPEC.md          # 本次重构的规格与验收记录
 - iGEM 部署：将 `dist/` 内容上传至 iGEM wiki 静态空间即可（`base: './'` 已保证相对路径可用）。
 - 当前目录未初始化 Git，建议部署前执行 `git init` 并提交基线。
 
-## 简历定位
 
-本仓库可作为"数据可视化与交互产品"能力展示：React + TypeScript 工程化、ECharts 数据仪表盘、滚动叙事动效、响应式与无障碍（键盘可达导航、`prefers-reduced-motion`、图片降级）。
