@@ -1,0 +1,190 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-HumanIHP {
+  --igem-secondary: #e79eb1;
+  --igem-accent: #ebbecf;
+}
+#page-HumanIHP .hero-full::before {
+  background: linear-gradient(135deg, rgba(231, 158, 177, 0.9), rgba(235, 190, 207, 0.72));
+}
+#page-HumanIHP .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-HumanIHP .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-HumanIHP .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(231, 158, 177, 0.16), rgba(235, 190, 207, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-HumanIHP .sidebar ul {
+  border-left-color: rgba(235, 190, 207, 0.55);
+}
+#page-HumanIHP .sidebar-link:hover,
+#page-HumanIHP .sidebar-link.active {
+  border-left-color: #e79eb1;
+  background: linear-gradient(90deg, rgba(231, 158, 177, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/human-ihp.css
+   Human IHP 专属双生互动卡片样式
+========================================= */
+
+/* 1. 双生沉浸互动卡片 (Twin Interactive Card) */
+.ihp-interactive-card {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.6s var(--anim-spring);
+  margin-bottom: 5rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 偶数卡片左右反转 */
+.ihp-interactive-card.reverse {
+  flex-direction: row-reverse;
+}
+
+/* 悬浮时：卡片浮起，投影加深，边缘流光 */
+.ihp-interactive-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(165, 187, 138, 0.15);
+  border-color: var(--igem-secondary);
+}
+
+/* 2. 左半侧/右半侧：沉浸式图像容器 */
+.ihp-img-box {
+  flex: 1.2;
+  height: 320px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  mask-image: radial-gradient(white, black);
+}
+
+.ihp-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s var(--anim-smooth), filter 0.5s ease;
+  filter: brightness(0.9);
+}
+
+.ihp-interactive-card:hover .ihp-img-box img {
+  transform: scale(1.08);
+  filter: brightness(1.05);
+}
+
+/* 3. 内容区与极简金句排版 */
+.ihp-content-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.ihp-core-text {
+  font-size: 1.8rem;
+  font-weight: 900;
+  line-height: 1.6;
+  color: transparent;
+  background: linear-gradient(135deg, var(--igem-primary) 0%, var(--igem-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* 4. 创新互动特效：悬浮触发的动态徽章 */
+
+/* 动效 A：旋转雷达 (用于调研访谈) */
+.icon-radar-wrap {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 3px dashed var(--igem-secondary);
+  display: flex; justify-content: center; align-items: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.5s ease;
+}
+.ihp-interactive-card:hover .icon-radar-wrap {
+  animation: spin-dash 4s linear infinite;
+  background: rgba(165, 187, 138, 0.1);
+  box-shadow: 0 0 20px rgba(165, 187, 138, 0.4);
+}
+.icon-radar-wrap span { display: inline-block; transition: all 0.5s ease; }
+.ihp-interactive-card:hover .icon-radar-wrap span {
+  animation: spin-reverse 4s linear infinite; /* 保证内部图标不倒转 */
+}
+@keyframes spin-dash { 100% { transform: rotate(360deg); } }
+@keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+
+/* 动效 B：安全扫描线 (用于伦理与安全) */
+.icon-scan-wrap {
+  width: 80px; height: 80px;
+  border-radius: 16px;
+  background: #ad8b72;
+  display: flex; justify-content: center; align-items: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.icon-scan-line {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 4px;
+  background: #e79eb1;
+  box-shadow: 0 0 15px 5px rgba(165, 187, 138, 0.6);
+  opacity: 0;
+}
+.ihp-interactive-card:hover .icon-scan-line {
+  opacity: 1;
+  animation: laser-scan 1.5s ease-in-out infinite alternate;
+}
+@keyframes laser-scan { 0% { top: -10%; } 100% { top: 110%; } }
+
+/* 动效 C：引力波纹 (用于跨学科合作) */
+.icon-pulse-wrap {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--igem-secondary);
+  display: flex; justify-content: center; align-items: center;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  color: white;
+}
+.icon-pulse-wrap::before, .icon-pulse-wrap::after {
+  content: ''; position: absolute; inset: 0;
+  border-radius: 50%; border: 2px solid var(--igem-secondary);
+  opacity: 0;
+}
+.ihp-interactive-card:hover .icon-pulse-wrap::before { animation: ripple 2s infinite ease-out; }
+.ihp-interactive-card:hover .icon-pulse-wrap::after { animation: ripple 2s infinite ease-out 1s; }
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* 5. 响应式降级 */
+@media (max-width: 960px) {
+  .ihp-interactive-card, .ihp-interactive-card.reverse {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+  .ihp-content-box { align-items: center; }
+  .ihp-img-box { width: 100%; height: 250px; }
+  .ihp-core-text { font-size: 1.5rem; }
+}

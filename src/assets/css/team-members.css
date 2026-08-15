@@ -1,0 +1,71 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-TeamMembers {
+  --igem-secondary: #b9cfa0;
+  --igem-accent: #dceaaf;
+}
+#page-TeamMembers .hero-full::before {
+  background: linear-gradient(135deg, rgba(185, 207, 160, 0.9), rgba(220, 234, 175, 0.72));
+}
+#page-TeamMembers .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-TeamMembers .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-TeamMembers .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(185, 207, 160, 0.16), rgba(220, 234, 175, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-TeamMembers .sidebar ul {
+  border-left-color: rgba(220, 234, 175, 0.55);
+}
+#page-TeamMembers .sidebar-link:hover,
+#page-TeamMembers .sidebar-link.active {
+  border-left-color: #b9cfa0;
+  background: linear-gradient(90deg, rgba(185, 207, 160, 0.2), transparent);
+}
+
+/* 团队成员页专属局部微调 */
+
+/* 覆盖全局布局：团队成员合照需要更强烈的视觉沉浸感 */
+#page-TeamMembers .content-layout {
+  max-width: 1600px;
+}
+
+/* 团队成员头像高级互动 */
+.team-avatar-box {
+  flex-shrink: 0;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--igem-bg-light);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.6s var(--anim-spring);
+}
+
+.team-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 头像悬浮：立体倾斜与流光阴影 */
+.igem-anim-hover-lift:hover .team-avatar-box {
+  transform: scale(1.1) rotate(6deg) translateY(-5px);
+  border-color: var(--igem-secondary);
+  box-shadow: 0 15px 30px rgba(165, 187, 138, 0.45);
+}
+
+.member-role-badge {
+  display: inline-block;
+  padding: 0.3rem 1rem;
+  background: rgba(165, 187, 138, 0.15);
+  color: var(--igem-primary);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  border: 1px solid rgba(165, 187, 138, 0.35);
+}

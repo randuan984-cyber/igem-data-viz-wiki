@@ -1,1 +1,133 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-DataModelingApplication {
+  --igem-secondary: #a783af;
+  --igem-accent: #dcc4e0;
+}
+#page-DataModelingApplication .hero-full::before {
+  background: linear-gradient(135deg, rgba(167, 131, 175, 0.9), rgba(220, 196, 224, 0.72));
+}
+#page-DataModelingApplication .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-DataModelingApplication .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-DataModelingApplication .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(167, 131, 175, 0.16), rgba(220, 196, 224, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-DataModelingApplication .sidebar ul {
+  border-left-color: rgba(220, 196, 224, 0.55);
+}
+#page-DataModelingApplication .sidebar-link:hover,
+#page-DataModelingApplication .sidebar-link.active {
+  border-left-color: #a783af;
+  background: linear-gradient(90deg, rgba(167, 131, 175, 0.2), transparent);
+}
 
+/* =========================================
+   WIKI_try/src/assets/css/datamodeling-application.css
+   Data Modeling Application 专属创新动态样式
+========================================= */
+
+/* 1. 三列自适应数据网格 */
+.app-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+/* 2. 全息数据扫描卡片 (Holographic Scan Card) */
+.app-card {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.5s var(--anim-spring);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+/* 🌟 创新特效：激光扫描线底层 */
+.app-card::after {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -50%;
+  width: 200%;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, rgba(165, 187, 138, 0.4), transparent);
+  transform: rotate(30deg);
+  transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: -1;
+  opacity: 0;
+}
+
+/* 悬浮时：卡片上浮 + 激光扫描过境 */
+.app-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--igem-secondary);
+  box-shadow: 0 15px 35px rgba(165, 187, 138, 0.15);
+}
+
+.app-card:hover::after {
+  top: 150%;
+  opacity: 1;
+}
+
+/* 3. 科技感运算图标 */
+.app-icon-container {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #ad8b72;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: var(--igem-secondary);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0 15px rgba(165, 187, 138, 0.2);
+  border: 2px solid rgba(165, 187, 138, 0.4);
+  transition: transform 0.5s var(--anim-spring), box-shadow 0.5s ease, background 0.3s ease;
+  z-index: 2;
+}
+
+/* 图标的悬浮 3D 偏转与发光 */
+.app-card:hover .app-icon-container {
+  transform: scale(1.15) rotate(15deg);
+  box-shadow: 0 0 25px rgba(165, 187, 138, 0.6);
+  background: var(--igem-primary);
+  color: white;
+}
+
+/* 4. 图片窗口微距放大 */
+.app-image-wrapper {
+  width: 100%;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  mask-image: radial-gradient(white, black); /* 修复Safari圆角溢出 */
+}
+
+.app-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--anim-smooth);
+}
+
+.app-card:hover .app-image-wrapper img {
+  transform: scale(1.1);
+}

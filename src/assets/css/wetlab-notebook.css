@@ -1,0 +1,154 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-WetLabNotebook {
+  --igem-secondary: #60a3ba;
+  --igem-accent: #cce4e2;
+}
+#page-WetLabNotebook .hero-full::before {
+  background: linear-gradient(135deg, rgba(96, 163, 186, 0.9), rgba(204, 228, 226, 0.72));
+}
+#page-WetLabNotebook .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-WetLabNotebook .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-WetLabNotebook .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(96, 163, 186, 0.16), rgba(204, 228, 226, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-WetLabNotebook .sidebar ul {
+  border-left-color: rgba(204, 228, 226, 0.55);
+}
+#page-WetLabNotebook .sidebar-link:hover,
+#page-WetLabNotebook .sidebar-link.active {
+  border-left-color: #60a3ba;
+  background: linear-gradient(90deg, rgba(96, 163, 186, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/wetlab-notebook.css
+   Wet Lab Notebook 专属科研手账样式
+========================================= */
+
+/* 1. 科研手账时间轴容器 */
+.notebook-timeline {
+  position: relative;
+  padding-left: 2.5rem;
+  margin-top: 2rem;
+  border-left: 4px solid rgba(165, 187, 138, 0.2);
+}
+
+/* 每一天的记录模块 */
+.notebook-entry {
+  position: relative;
+  margin-bottom: 4rem;
+  transition: all 0.5s var(--anim-spring);
+}
+
+/* 时间轴上的发光锚点 */
+.notebook-marker {
+  position: absolute;
+  left: -2.85rem;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--igem-bg-light);
+  border: 4px solid var(--igem-primary);
+  transition: all 0.4s var(--anim-spring);
+  z-index: 2;
+}
+
+/* 悬浮爆发荧光 */
+.notebook-entry:hover .notebook-marker {
+  background: var(--igem-secondary);
+  border-color: white;
+  box-shadow: 0 0 15px 5px rgba(165, 187, 138, 0.4);
+  transform: scale(1.3);
+}
+
+/* 极客风日期排版 */
+.notebook-date {
+  font-family: 'Fira Code', 'Courier New', monospace;
+  color: var(--igem-primary);
+  font-weight: 900;
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.notebook-date::after {
+  content: '';
+  display: block;
+  width: 50px;
+  height: 2px;
+  background: var(--igem-secondary);
+}
+
+/* 2. 极客网格纸卡片 (Graph-Paper Cards) */
+.notebook-card {
+  background: var(--glass-bg);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.5s var(--anim-spring);
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 纯 CSS 绘制的隐约实验网格纸底纹 */
+.notebook-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.notebook-card > * { position: relative; z-index: 2; }
+
+.notebook-entry:hover .notebook-card {
+  transform: translateX(10px);
+  border-color: rgba(165, 187, 138, 0.5);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 3. 日志专属标签体系 */
+.log-tag {
+  font-size: 0.8rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+.tag-op { background: rgba(165, 187, 138, 0.1); color: #60a3ba; border: 1px solid rgba(165, 187, 138, 0.3); } /* 操作 */
+.tag-warn { background: rgba(206, 172, 147, 0.1); color: #60a3ba; border: 1px solid rgba(206, 172, 147, 0.3); } /* 问题/警告 */
+.tag-success { background: rgba(165, 187, 138, 0.1); color: var(--igem-secondary); border: 1px solid rgba(165, 187, 138, 0.3); } /* 成功/解决 */
+
+/* 4. 拍立得悬浮相片 (Polaroid Hover Photos) */
+.notebook-photo {
+  width: 100%;
+  border: 8px solid white;
+  border-bottom-width: 24px; /* 拍立得相纸的留白底边 */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  transform: rotate(-3deg);
+  transition: all 0.5s var(--anim-spring);
+  border-radius: 2px;
+  background: white;
+}
+
+.notebook-photo:hover {
+  transform: rotate(0) scale(1.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+}
+.notebook-photo.tilt-right { transform: rotate(3deg); }
+.notebook-photo.tilt-right:hover { transform: rotate(0) scale(1.1); }

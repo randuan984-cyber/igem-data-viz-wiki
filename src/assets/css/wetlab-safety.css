@@ -1,0 +1,133 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-WetLabSafety {
+  --igem-secondary: #60a3ba;
+  --igem-accent: #cce4e2;
+}
+#page-WetLabSafety .hero-full::before {
+  background: linear-gradient(135deg, rgba(96, 163, 186, 0.9), rgba(204, 228, 226, 0.72));
+}
+#page-WetLabSafety .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-WetLabSafety .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-WetLabSafety .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(96, 163, 186, 0.16), rgba(204, 228, 226, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-WetLabSafety .sidebar ul {
+  border-left-color: rgba(204, 228, 226, 0.55);
+}
+#page-WetLabSafety .sidebar-link:hover,
+#page-WetLabSafety .sidebar-link.active {
+  border-left-color: #60a3ba;
+  background: linear-gradient(90deg, rgba(96, 163, 186, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/wetlab-safety.css
+   Wet Lab Safety 专属封控与科技安全样式
+========================================= */
+
+/* 1. BSL-1 呼吸发光盾牌 (Pulsing Shield) */
+@keyframes pulse-shield-glow {
+  0% { box-shadow: 0 0 0 0 rgba(165, 187, 138, 0.4); }
+  70% { box-shadow: 0 0 0 20px rgba(165, 187, 138, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(165, 187, 138, 0); }
+}
+
+.safety-shield-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, var(--igem-primary) 0%, var(--igem-secondary) 100%);
+  border-radius: 25% 25% 50% 50%; /* 模拟盾牌形状 */
+  color: white;
+  font-size: 2.5rem;
+  animation: pulse-shield-glow 2.5s infinite;
+  border: 4px solid var(--igem-bg-light);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* 2. 风险-防范 动态滑窗卡片 (Risk-Mitigation Cards) */
+.rm-card {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.5s var(--anim-spring);
+  z-index: 1;
+}
+
+/* 底部隐藏的防范协议面板 */
+.rm-mitigation {
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(173, 139, 114, 0.95); /* 深绿色背景 */
+  backdrop-filter: blur(5px);
+  color: white;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: bottom 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 2;
+}
+
+.rm-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(165, 187, 138, 0.2);
+}
+
+.rm-card:hover .rm-mitigation {
+  bottom: 0; /* 悬浮时，防范协议滑出覆盖 */
+}
+
+.rm-risk-icon {
+  font-size: 2rem;
+  color: #60a3ba; /* 红色风险警告色 */
+  margin-bottom: 1rem;
+}
+
+/* 3. 环境警戒斜纹面板 (Warning Stripes Board) */
+.stripe-warning-board {
+  position: relative;
+  background: white;
+  border-left: 6px solid var(--igem-accent); /* 琥珀金警告色 */
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* CSS 绘制的工业斜纹背景 */
+.stripe-warning-board::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(206, 172, 147, 0.03),
+    rgba(206, 172, 147, 0.03) 15px,
+    transparent 15px,
+    transparent 30px
+  );
+  z-index: 0;
+  pointer-events: none;
+}
+
+.stripe-warning-board > * {
+  position: relative;
+  z-index: 1;
+}

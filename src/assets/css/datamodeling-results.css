@@ -1,0 +1,124 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-DataModelingResults {
+  --igem-secondary: #a783af;
+  --igem-accent: #dcc4e0;
+}
+#page-DataModelingResults .hero-full::before {
+  background: linear-gradient(135deg, rgba(167, 131, 175, 0.9), rgba(220, 196, 224, 0.72));
+}
+#page-DataModelingResults .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-DataModelingResults .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-DataModelingResults .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(167, 131, 175, 0.16), rgba(220, 196, 224, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-DataModelingResults .sidebar ul {
+  border-left-color: rgba(220, 196, 224, 0.55);
+}
+#page-DataModelingResults .sidebar-link:hover,
+#page-DataModelingResults .sidebar-link.active {
+  border-left-color: #a783af;
+  background: linear-gradient(90deg, rgba(167, 131, 175, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/datamodeling-results.css
+   Data Modeling Results 专属动态图表样式
+========================================= */
+
+/* 1. 核心结果卡片容器 */
+.model-results-card {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.6s var(--anim-spring);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+}
+
+.model-results-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--igem-secondary);
+  box-shadow: 0 25px 50px rgba(165, 187, 138, 0.2);
+}
+
+/* 2. 渐变发光数字 */
+.highlight-number {
+  font-size: 4.5rem;
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  background: linear-gradient(135deg, var(--igem-primary) 0%, var(--igem-secondary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 10px 15px rgba(165, 187, 138, 0.3));
+  transition: transform 0.6s var(--anim-spring);
+}
+
+.model-results-card:hover .highlight-number {
+  transform: scale(1.15);
+}
+
+/* 3. 纯 CSS 动态对比柱状图 (创新交互) */
+.css-chart-box {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 30px;
+  height: 120px;
+  width: 100%;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  margin: 2rem 0 1.5rem 0;
+  padding-bottom: 5px;
+}
+
+.css-bar {
+  width: 50px;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  /* 初始高度，悬浮时会触发拉升 */
+  height: 10px; 
+  transition: height 1.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* 实验数据柱 */
+.css-bar.experimental {
+  background: #8a7463;
+  opacity: 0.7;
+}
+
+/* 模拟提升柱 (带有荧光效) */
+.css-bar.simulated {
+  background: var(--igem-secondary);
+  box-shadow: 0 0 20px rgba(165, 187, 138, 0.6);
+}
+
+/* 鼠标悬浮时触发数据拉升动画！ */
+.model-results-card:hover .css-bar.experimental { height: 60px; }
+.model-results-card:hover .css-bar.simulated { height: 95px; } /* 体现出30%的提升 */
+
+/* 柱状图底部图注 */
+.css-bar::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: var(--igem-text-muted);
+  font-weight: 700;
+  white-space: nowrap;
+}

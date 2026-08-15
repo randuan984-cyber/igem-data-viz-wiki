@@ -1,0 +1,150 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-WetLabMeasurement {
+  --igem-secondary: #60a3ba;
+  --igem-accent: #cce4e2;
+}
+#page-WetLabMeasurement .hero-full::before {
+  background: linear-gradient(135deg, rgba(96, 163, 186, 0.9), rgba(204, 228, 226, 0.72));
+}
+#page-WetLabMeasurement .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-WetLabMeasurement .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-WetLabMeasurement .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(96, 163, 186, 0.16), rgba(204, 228, 226, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-WetLabMeasurement .sidebar ul {
+  border-left-color: rgba(204, 228, 226, 0.55);
+}
+#page-WetLabMeasurement .sidebar-link:hover,
+#page-WetLabMeasurement .sidebar-link.active {
+  border-left-color: #60a3ba;
+  background: linear-gradient(90deg, rgba(96, 163, 186, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/wetlab-measurement.css
+   Wet Lab Measurement 专属仪器交互样式
+========================================= */
+
+/* 1. 实验室分析仪器面板 (Instrument Panel) */
+.meas-panel {
+  background: #ad8b72;
+  border-radius: 16px;
+  padding: 2rem;
+  color: var(--igem-bg-light);
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8), 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(165, 187, 138, 0.4);
+  transition: all 0.5s var(--anim-spring);
+}
+
+/* 仪器面板的高级网格底纹 */
+.meas-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  z-index: 0;
+}
+
+.meas-panel > * {
+  position: relative;
+  z-index: 2;
+}
+
+.igem-anim-hover-lift:hover .meas-panel {
+  border-color: var(--igem-secondary);
+  box-shadow: inset 0 0 40px rgba(165, 187, 138, 0.15), 0 20px 40px rgba(165, 187, 138, 0.2);
+}
+
+/* 2. 测量标准化专属标签 (Standardization Tag) */
+.meas-std-tag {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(206, 172, 147, 0.1);
+  color: var(--igem-accent); /* 琥珀金，代表黄金标准 */
+  border: 1px solid rgba(206, 172, 147, 0.4);
+  border-radius: 6px;
+  padding: 0.3rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-top: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.meas-std-tag i {
+  margin-right: 6px;
+  font-style: normal;
+}
+
+/* 3. 创新交互：纯 CSS/SVG 模拟图表动态绘制 */
+
+/* 坐标轴基础样式 */
+.sim-chart {
+  width: 100%;
+  height: 120px;
+  border-left: 2px solid #ad8b72;
+  border-bottom: 2px solid #ad8b72;
+  margin-top: 1.5rem;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* 动画 1：柱状图拔地而起 (用于表达量/浓度) */
+.sim-bar {
+  flex: 1;
+  margin: 0 5px;
+  background: linear-gradient(180deg, var(--igem-secondary) 0%, rgba(165, 187, 138, 0.2) 100%);
+  border-radius: 4px 4px 0 0;
+  height: 0%; /* 初始高度为 0 */
+  transition: height 1s var(--anim-spring);
+}
+
+.igem-anim-hover-lift:hover .sim-bar:nth-child(1) { height: 30%; transition-delay: 0.1s; }
+.igem-anim-hover-lift:hover .sim-bar:nth-child(2) { height: 65%; transition-delay: 0.2s; }
+.igem-anim-hover-lift:hover .sim-bar:nth-child(3) { height: 100%; transition-delay: 0.3s; }
+
+/* 动画 2：GC-MS 色谱峰描边 (SVG 描线动画) */
+.sim-peak-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.sim-peak-path {
+  fill: none;
+  stroke: #60a3ba;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000; /* 初始隐藏 */
+  transition: stroke-dashoffset 1.5s ease-in-out;
+  filter: drop-shadow(0 0 8px rgba(165, 187, 138, 0.6));
+}
+.igem-anim-hover-lift:hover .sim-peak-path {
+  stroke-dashoffset: 0; /* 悬浮时自动画线 */
+}
+
+/* 动画 3：S型生长曲线 (SVG 描线) */
+.sim-growth-path {
+  fill: none;
+  stroke: var(--igem-secondary);
+  stroke-width: 4;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1.5s ease-in-out;
+  filter: drop-shadow(0 0 8px rgba(165, 187, 138, 0.6));
+}
+.igem-anim-hover-lift:hover .sim-growth-path {
+  stroke-dashoffset: 0;
+}

@@ -1,0 +1,221 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-HumanEducation {
+  --igem-secondary: #e79eb1;
+  --igem-accent: #ebbecf;
+}
+#page-HumanEducation .hero-full::before {
+  background: linear-gradient(135deg, rgba(231, 158, 177, 0.9), rgba(235, 190, 207, 0.72));
+}
+#page-HumanEducation .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-HumanEducation .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-HumanEducation .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(231, 158, 177, 0.16), rgba(235, 190, 207, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-HumanEducation .sidebar ul {
+  border-left-color: rgba(235, 190, 207, 0.55);
+}
+#page-HumanEducation .sidebar-link:hover,
+#page-HumanEducation .sidebar-link.active {
+  border-left-color: #e79eb1;
+  background: linear-gradient(90deg, rgba(231, 158, 177, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/human-education.css
+   Human Education 专属创新动态互动样式
+========================================= */
+
+/* 1. 3D 全息翻转卡片 (3D Flip Cards) - 用于科普活动 */
+.edu-flip-container {
+  perspective: 1000px;
+  width: 100%;
+  height: 280px;
+  margin-bottom: 2rem;
+}
+
+.edu-flip-card {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1); /* 弹性翻转 */
+  transform-style: preserve-3d;
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+.edu-flip-container:hover .edu-flip-card {
+  transform: rotateY(180deg);
+  box-shadow: 0 20px 40px rgba(165, 187, 138, 0.2);
+}
+
+.edu-flip-front, .edu-flip-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* 正面：发光图标与大标题 */
+.edu-flip-front {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--igem-primary);
+}
+
+.edu-flip-front .edu-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 10px 10px rgba(165, 187, 138, 0.3));
+  transition: transform 0.3s ease;
+}
+
+.edu-flip-container:hover .edu-icon {
+  transform: scale(1.2);
+}
+
+/* 背面：图片沉浸与文字内容 */
+.edu-flip-back {
+  background: linear-gradient(135deg, var(--igem-primary) 0%, var(--igem-secondary) 100%);
+  color: white;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.edu-flip-back::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3; /* 图片作为半透明暗纹背景 */
+  z-index: 0;
+}
+
+.edu-flip-back > * { position: relative; z-index: 1; }
+
+.edu-flip-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  margin: 0;
+}
+
+
+/* 2. 层叠资源浮窗 (Stack Hover Showcase) - 用于教育资源 */
+.edu-stack-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+  margin-top: 3rem;
+}
+
+.edu-stack-item {
+  background: white;
+  border: 2px solid var(--igem-secondary);
+  border-radius: 12px;
+  padding: 1.5rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--igem-primary);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  transition: all 0.6s var(--anim-spring);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.edu-stack-item i { font-size: 1.8rem; }
+
+/* 初始状态下的堆叠与倾斜 */
+.edu-stack-item:nth-child(1) { transform: rotate(-5deg) translateY(0); z-index: 3; }
+.edu-stack-item:nth-child(2) { transform: rotate(5deg) translateY(10px) scale(0.95); z-index: 2; opacity: 0.8; }
+.edu-stack-item:nth-child(3) { transform: rotate(-2deg) translateY(20px) scale(0.9); z-index: 1; opacity: 0.6; }
+
+/* 悬浮整个区域时，资源卡片如同扑克牌般平滑展开 */
+.edu-stack-container:hover .edu-stack-item:nth-child(1) { transform: translateX(-150px) rotate(-10deg) scale(1.05); opacity: 1; box-shadow: 0 15px 35px rgba(165, 187, 138, 0.35); }
+.edu-stack-container:hover .edu-stack-item:nth-child(2) { transform: translateX(0) rotate(0deg) scale(1.1); z-index: 4; opacity: 1; box-shadow: 0 20px 40px rgba(165, 187, 138, 0.45); border-color: var(--igem-primary); }
+.edu-stack-container:hover .edu-stack-item:nth-child(3) { transform: translateX(150px) rotate(10deg) scale(1.05); opacity: 1; box-shadow: 0 15px 35px rgba(165, 187, 138, 0.35); }
+
+/* 响应式降级 */
+@media (max-width: 768px) {
+  .edu-stack-container:hover .edu-stack-item:nth-child(1) { transform: translateY(-70px) rotate(-5deg); }
+  .edu-stack-container:hover .edu-stack-item:nth-child(3) { transform: translateY(70px) rotate(5deg); }
+}
+
+
+/* 3. 引力波纹社区节点 (Gravity Pulse Nodes) - 用于社区参与 */
+.edu-pulse-box {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.5s var(--anim-spring);
+  z-index: 1;
+}
+
+.edu-pulse-box:hover {
+  transform: translateY(-8px);
+  border-color: var(--igem-secondary);
+}
+
+.edu-pulse-core {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 2rem;
+  border-radius: 50%;
+  background: var(--igem-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: white;
+  z-index: 2;
+  box-shadow: 0 0 20px rgba(173, 139, 114, 0.55);
+}
+
+/* 核心引力波纹扩散动画 */
+.edu-pulse-core::before, .edu-pulse-core::after {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid var(--igem-secondary);
+  animation: gravity-pulse 2.5s infinite cubic-bezier(0.21, 0.53, 0.56, 0.8);
+  z-index: -1;
+}
+
+.edu-pulse-core::after {
+  animation-delay: 1.25s;
+}
+
+@keyframes gravity-pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}

@@ -1,0 +1,136 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-WetLabDescription {
+  --igem-secondary: #60a3ba;
+  --igem-accent: #cce4e2;
+}
+#page-WetLabDescription .hero-full::before {
+  background: linear-gradient(135deg, rgba(96, 163, 186, 0.9), rgba(204, 228, 226, 0.72));
+}
+#page-WetLabDescription .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-WetLabDescription .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-WetLabDescription .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(96, 163, 186, 0.16), rgba(204, 228, 226, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-WetLabDescription .sidebar ul {
+  border-left-color: rgba(204, 228, 226, 0.55);
+}
+#page-WetLabDescription .sidebar-link:hover,
+#page-WetLabDescription .sidebar-link.active {
+  border-left-color: #60a3ba;
+  background: linear-gradient(90deg, rgba(96, 163, 186, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/wetlab-description.css
+   WetLab Description 专属创新动态样式
+========================================= */
+
+/* 1. 创新交互：实验管线追踪 (Glowing Pipeline) */
+.wet-flow-container {
+  position: relative;
+  padding-left: 3rem;
+  margin-top: 2rem;
+  border-left: 3px dashed rgba(165, 187, 138, 0.3); /* 虚线试管感 */
+}
+
+.wet-flow-step {
+  position: relative;
+  margin-bottom: 4rem;
+  transition: all 0.5s var(--anim-spring);
+}
+
+/* 路线发光节点 */
+.wet-flow-dot {
+  position: absolute;
+  left: -3.85rem; /* 骑在虚线上 */
+  top: 1.5rem;
+  width: 24px;
+  height: 24px;
+  background: var(--igem-bg-light);
+  border: 4px solid var(--igem-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8);
+  transition: all 0.4s var(--anim-spring);
+  z-index: 2;
+}
+
+/* 悬浮爆发荧光 */
+.wet-flow-step:hover {
+  transform: translateX(10px);
+}
+
+.wet-flow-step:hover .wet-flow-dot {
+  background: var(--igem-secondary);
+  border-color: white;
+  box-shadow: 0 0 20px 8px rgba(165, 187, 138, 0.4);
+  transform: scale(1.3);
+}
+
+/* 2. 创新交互：液体灌注科学假设卡片 (Liquid Fill Card) */
+.hypo-card {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 底部的液体伪元素 */
+.hypo-card::before {
+  content: '';
+  position: absolute;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(165, 187, 138, 0.15) 0%, transparent 100%);
+  transition: bottom 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+  border-radius: 0 0 20px 20px;
+}
+
+/* 悬浮时液体如同倒满烧杯般升起 */
+.hypo-card:hover::before {
+  bottom: 0;
+}
+
+/* 卡片内部的学术 Icon 悬浮浮动 */
+.hypo-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 65px;
+  height: 65px;
+  background: rgba(165, 187, 138, 0.08);
+  border: 2px solid rgba(165, 187, 138, 0.2);
+  border-radius: 16px;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--igem-primary);
+  transition: all 0.5s var(--anim-spring);
+}
+
+.hypo-card:hover .hypo-icon {
+  transform: translateY(-8px) rotate(10deg);
+  background: var(--igem-secondary);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 10px 20px rgba(165, 187, 138, 0.3);
+}
+
+/* 3. 标签美化 */
+.wet-tag {
+  display: inline-block;
+  padding: 0.2rem 0.8rem;
+  background: rgba(173, 139, 114, 0.08);
+  color: var(--igem-text-muted);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: 1rem;
+}

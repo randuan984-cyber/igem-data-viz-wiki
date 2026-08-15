@@ -1,0 +1,138 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-WetLabParts {
+  --igem-secondary: #60a3ba;
+  --igem-accent: #cce4e2;
+}
+#page-WetLabParts .hero-full::before {
+  background: linear-gradient(135deg, rgba(96, 163, 186, 0.9), rgba(204, 228, 226, 0.72));
+}
+#page-WetLabParts .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-WetLabParts .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-WetLabParts .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(96, 163, 186, 0.16), rgba(204, 228, 226, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-WetLabParts .sidebar ul {
+  border-left-color: rgba(204, 228, 226, 0.55);
+}
+#page-WetLabParts .sidebar-link:hover,
+#page-WetLabParts .sidebar-link.active {
+  border-left-color: #60a3ba;
+  background: linear-gradient(90deg, rgba(96, 163, 186, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/wetlab-parts.css
+   Wet Lab Parts 专属创新动态样式
+========================================= */
+
+/* 1. 基因元件高级展示卡片 (Part Showcase Card) */
+.part-card {
+  position: relative;
+  background: var(--glass-bg);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-bottom: 2rem;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.5s var(--anim-spring);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
+  border-top: 1px solid transparent;
+}
+
+/* SBOL 国际标准色彩侧边栏提示 */
+.part-card.sbol-promoter { border-left: 6px solid var(--igem-secondary); } /* 启动子：绿色 */
+.part-card.sbol-cds { border-left: 6px solid #60a3ba; }      /* 编码区：蓝色 */
+.part-card.sbol-terminator { border-left: 6px solid #60a3ba; } /* 终止子：红色 */
+
+.part-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.08);
+}
+
+.part-card.sbol-promoter:hover { border-top-color: rgba(165, 187, 138, 0.2); }
+.part-card.sbol-cds:hover { border-top-color: rgba(165, 187, 138, 0.2); }
+.part-card.sbol-terminator:hover { border-top-color: rgba(206, 172, 147, 0.2); }
+
+/* 2. 创新交互：DNA 序列底纹悬浮显影特效 */
+.dna-bg-reveal {
+  position: absolute;
+  right: -2rem;
+  bottom: -1rem;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 5rem;
+  font-weight: 900;
+  color: var(--igem-text-muted);
+  opacity: 0.03;
+  letter-spacing: 5px;
+  pointer-events: none;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  white-space: nowrap;
+  user-select: none;
+  z-index: 0;
+}
+
+/* 当鼠标悬浮卡片时，底层的 DNA 序列点亮、放大并缓缓滑动 */
+.part-card:hover .dna-bg-reveal {
+  opacity: 0.12;
+  transform: translateX(-40px) scale(1.1);
+}
+
+.part-card.sbol-promoter:hover .dna-bg-reveal { color: var(--igem-secondary); }
+.part-card.sbol-cds:hover .dna-bg-reveal { color: #60a3ba; }
+.part-card.sbol-terminator:hover .dna-bg-reveal { color: #60a3ba; }
+
+/* 保证卡片文字在 DNA 底纹之上 */
+.part-card > * { position: relative; z-index: 2; }
+
+/* 3. iGEM Registry 专属极客元件号牌 (BBa_ID Badge) */
+.part-id-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #ad8b72;
+  color: #cce4e2;
+  font-family: 'Fira Code', monospace;
+  font-weight: 700;
+  padding: 0.4rem 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: inset 0 0 10px rgba(185, 207, 160, 0.2);
+  border: 1px solid rgba(185, 207, 160, 0.4);
+}
+
+.part-id-badge i {
+  margin-right: 8px;
+  font-size: 1.2rem;
+}
+
+/* 4. 沉浸式表征数据容器 (Holographic Data Window) */
+.char-graph-container {
+  background: radial-gradient(circle at center, #ad8b72 0%, #ad8b72 100%);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5), 0 15px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(165, 187, 138, 0.3);
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.char-graph-container img {
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  transition: transform 0.6s var(--anim-spring);
+}
+
+.char-graph-container:hover img {
+  transform: scale(1.03);
+}

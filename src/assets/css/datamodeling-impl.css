@@ -1,0 +1,151 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-DataModelingImpl {
+  --igem-secondary: #a783af;
+  --igem-accent: #dcc4e0;
+}
+#page-DataModelingImpl .hero-full::before {
+  background: linear-gradient(135deg, rgba(167, 131, 175, 0.9), rgba(220, 196, 224, 0.72));
+}
+#page-DataModelingImpl .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-DataModelingImpl .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-DataModelingImpl .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(167, 131, 175, 0.16), rgba(220, 196, 224, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-DataModelingImpl .sidebar ul {
+  border-left-color: rgba(220, 196, 224, 0.55);
+}
+#page-DataModelingImpl .sidebar-link:hover,
+#page-DataModelingImpl .sidebar-link.active {
+  border-left-color: #a783af;
+  background: linear-gradient(90deg, rgba(167, 131, 175, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/datamodeling-impl.css
+   Data Modeling Impl 专属创新数据流引擎样式
+========================================= */
+
+/* 1. 核心承载面板 */
+.impl-dashboard {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 2. 数据流转网格系统 */
+.impl-flow-network {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.5rem;
+  position: relative;
+}
+
+/* 3. 科技感节点 (Nodes) */
+.impl-node {
+  background: #ad8b72;
+  border: 2px solid rgba(165, 187, 138, 0.3);
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: white;
+  text-align: center;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  width: 180px;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s var(--anim-spring);
+  z-index: 2;
+  position: relative;
+}
+
+/* 核心运算引擎节点 (Engine) */
+.impl-engine {
+  width: 240px;
+  border-color: var(--igem-secondary);
+  background: linear-gradient(135deg, #ad8b72 0%, rgba(173, 139, 114, 0.6) 100%);
+  box-shadow: inset 0 0 30px rgba(165, 187, 138, 0.2), 0 10px 30px rgba(165, 187, 138, 0.15);
+}
+
+.impl-node-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  color: var(--igem-secondary);
+  filter: drop-shadow(0 0 10px rgba(165, 187, 138, 0.6));
+  transition: transform 0.5s ease;
+}
+
+/* 节点悬浮特效 */
+.impl-node:hover {
+  transform: translateY(-8px) scale(1.05);
+  border-color: #fff;
+  box-shadow: 0 15px 30px rgba(165, 187, 138, 0.3);
+}
+
+.impl-node:hover .impl-node-icon {
+  transform: rotateY(180deg);
+}
+
+/* 4. 左侧输入源编组 */
+.impl-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* 5. 发光数据传输链路 (Data Flow Links) */
+.impl-link {
+  flex: 1;
+  height: 2px;
+  background: rgba(165, 187, 138, 0.2);
+  margin: 0 1.5rem;
+  position: relative;
+}
+
+/* 光子流动态特效 */
+.impl-link::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 15px 5px var(--igem-secondary);
+  /* 光子沿链路传输的动画 */
+  animation: photon-flow 2s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.impl-link-bottom::after {
+  animation-delay: 1s; /* 让上下两条线的光子错开时间 */
+}
+
+@keyframes photon-flow {
+  0% { left: 0; opacity: 0; transform: scale(0.5); }
+  20% { opacity: 1; transform: scale(1); }
+  80% { opacity: 1; transform: scale(1); }
+  100% { left: 100%; opacity: 0; transform: scale(0.5); }
+}
+
+@media (max-width: 900px) {
+  .impl-flow-network { flex-direction: column; gap: 3rem; }
+  .impl-link { width: 2px; height: 50px; margin: 1.5rem 0; }
+  .impl-link::after { top: 0; left: -4px; animation: photon-flow-y 2s infinite; }
+  @keyframes photon-flow-y {
+    0% { top: 0; opacity: 0; } 20% { opacity: 1; } 80% { opacity: 1; } 100% { top: 100%; opacity: 0; }
+  }
+}

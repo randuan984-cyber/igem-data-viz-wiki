@@ -1,0 +1,101 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-TeamAttributions {
+  --igem-secondary: #b9cfa0;
+  --igem-accent: #dceaaf;
+}
+#page-TeamAttributions .hero-full::before {
+  background: linear-gradient(135deg, rgba(185, 207, 160, 0.9), rgba(220, 234, 175, 0.72));
+}
+#page-TeamAttributions .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-TeamAttributions .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-TeamAttributions .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(185, 207, 160, 0.16), rgba(220, 234, 175, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-TeamAttributions .sidebar ul {
+  border-left-color: rgba(220, 234, 175, 0.55);
+}
+#page-TeamAttributions .sidebar-link:hover,
+#page-TeamAttributions .sidebar-link.active {
+  border-left-color: #b9cfa0;
+  background: linear-gradient(90deg, rgba(185, 207, 160, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/team-attributions.css
+   致谢页专属微调样式
+========================================= */
+
+/* 1. 导师/专家头像容器 (方圆角更显稳重与学术权威感) */
+.attr-avatar-box {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 20px; 
+  overflow: hidden;
+  border: 3px solid var(--igem-bg-light);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s var(--anim-spring);
+  background: white;
+}
+
+.attr-avatar-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 导师头像悬浮：微放大、抬升与发光边框 */
+.igem-anim-hover-lift:hover .attr-avatar-box {
+  transform: translateY(-5px) scale(1.05);
+  border-color: var(--igem-secondary);
+  box-shadow: 0 15px 30px rgba(165, 187, 138, 0.35);
+}
+
+/* 2. 身份/属性标签 */
+.attr-role-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  background: rgba(173, 139, 114, 0.12);
+  color: var(--igem-primary);
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin: 0.5rem 0;
+  border: 1px solid rgba(173, 139, 114, 0.2);
+}
+
+/* 3. 合作机构/赞助商 Logo 容器 (纯圆悬浮徽章) */
+.attr-logo-box {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: white;
+  border: 4px solid var(--igem-bg-light);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.5s var(--anim-spring);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem; /* 给Logo留出呼吸空间 */
+}
+
+.attr-logo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Logo悬浮：带有社交属性的微倾斜旋转放大 */
+.igem-anim-hover-lift:hover .attr-logo-box {
+  transform: rotate(6deg) scale(1.1);
+  border-color: var(--igem-secondary);
+  box-shadow: 0 15px 30px rgba(165, 187, 138, 0.3);
+}

@@ -1,0 +1,130 @@
+﻿/* ?????? */
+/* ????????? + ???? */
+#page-DataModelingBackground {
+  --igem-secondary: #a783af;
+  --igem-accent: #dcc4e0;
+}
+#page-DataModelingBackground .hero-full::before {
+  background: linear-gradient(135deg, rgba(167, 131, 175, 0.9), rgba(220, 196, 224, 0.72));
+}
+#page-DataModelingBackground .hero-full h1 {
+  color: #5c4a3a;
+  text-shadow: 0 2px 14px rgba(254, 251, 232, 0.55);
+}
+#page-DataModelingBackground .hero-sub {
+  color: rgba(92, 74, 58, 0.92);
+}
+#page-DataModelingBackground .igem-anim-hover-lift {
+  background: linear-gradient(160deg, rgba(167, 131, 175, 0.16), rgba(220, 196, 224, 0.12)), rgba(254, 251, 232, 0.86);
+}
+#page-DataModelingBackground .sidebar ul {
+  border-left-color: rgba(220, 196, 224, 0.55);
+}
+#page-DataModelingBackground .sidebar-link:hover,
+#page-DataModelingBackground .sidebar-link.active {
+  border-left-color: #a783af;
+  background: linear-gradient(90deg, rgba(167, 131, 175, 0.2), transparent);
+}
+
+/* =========================================
+   WIKI_try/src/assets/css/datamodeling-background.css
+   Data Modeling Background 专属创新动态样式
+========================================= */
+
+/* 1. 全息瞄准定位卡片 (Cyber Target Box) */
+.cyber-target-box {
+  position: relative;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: var(--glass-shadow);
+  transition: all 0.5s var(--anim-spring);
+  z-index: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+}
+
+/* 创新特效 1：缓慢漂移的底层计算网格 */
+.cyber-target-box::before {
+  content: '';
+  position: absolute;
+  top: -100%; left: -100%; right: -100%; bottom: -100%;
+  background-image: 
+    linear-gradient(rgba(165, 187, 138, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(165, 187, 138, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  transform: rotate(15deg);
+  animation: grid-pan 15s linear infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes grid-pan {
+  0% { transform: translateY(0) rotate(15deg); }
+  100% { transform: translateY(40px) rotate(15deg); }
+}
+
+/* 创新特效 2：四角呼吸瞄准星 */
+.target-corners, .target-corners-inner {
+  position: absolute;
+  inset: 20px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.target-corners::before, .target-corners::after,
+.target-corners-inner::before, .target-corners-inner::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-color: var(--igem-secondary);
+  border-style: solid;
+  transition: all 0.5s var(--anim-spring);
+  opacity: 0.6;
+}
+
+/* 定位四个角 */
+.target-corners::before { top: 0; left: 0; border-width: 4px 0 0 4px; border-radius: 8px 0 0 0; }
+.target-corners::after { bottom: 0; right: 0; border-width: 0 4px 4px 0; border-radius: 0 0 8px 0; }
+.target-corners-inner::before { top: 0; right: 0; border-width: 4px 4px 0 0; border-radius: 0 8px 0 0; }
+.target-corners-inner::after { bottom: 0; left: 0; border-width: 0 0 4px 4px; border-radius: 0 0 0 8px; }
+
+/* 悬浮交互：瞄准星放大锁定，卡片浮起 */
+.cyber-target-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(165, 187, 138, 0.15);
+  border-color: rgba(165, 187, 138, 0.4);
+}
+
+.cyber-target-box:hover .target-corners::before,
+.cyber-target-box:hover .target-corners::after,
+.cyber-target-box:hover .target-corners-inner::before,
+.cyber-target-box:hover .target-corners-inner::after {
+  width: 50px;
+  height: 50px;
+  border-color: var(--igem-primary);
+  opacity: 1;
+}
+
+/* 极简核心文字排版 */
+.core-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--igem-primary);
+  letter-spacing: 2px;
+  line-height: 1.8;
+  margin: 0;
+  text-shadow: 0 4px 15px rgba(165, 187, 138, 0.2);
+}
+
+@media (max-width: 768px) {
+  .cyber-target-box { min-height: 200px; padding: 3rem 1.5rem; }
+  .core-text { font-size: 1.2rem; }
+}
